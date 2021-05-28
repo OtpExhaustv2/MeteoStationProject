@@ -15,6 +15,7 @@ namespace MeteoSationProject
         public Form1()
         {
             InitializeComponent();
+            Console.WriteLine("test");
         }
     }
 }
