@@ -50,6 +50,11 @@
             this.toolStripConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripImportConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripExportConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxAlarme)).BeginInit();
@@ -57,12 +62,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMaxInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinInterval)).BeginInit();
             this.menu.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbPorts
             // 
             this.cbPorts.FormattingEnabled = true;
-            this.cbPorts.Location = new System.Drawing.Point(108, 51);
+            this.cbPorts.Location = new System.Drawing.Point(970, 99);
             this.cbPorts.Name = "cbPorts";
             this.cbPorts.Size = new System.Drawing.Size(121, 21);
             this.cbPorts.TabIndex = 0;
@@ -71,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 54);
+            this.label1.Location = new System.Drawing.Point(906, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
@@ -79,7 +86,7 @@
             // 
             // btnToggleReading
             // 
-            this.btnToggleReading.Location = new System.Drawing.Point(234, 50);
+            this.btnToggleReading.Location = new System.Drawing.Point(1096, 98);
             this.btnToggleReading.Name = "btnToggleReading";
             this.btnToggleReading.Size = new System.Drawing.Size(75, 23);
             this.btnToggleReading.TabIndex = 2;
@@ -95,7 +102,7 @@
             this.gridData.AllowUserToResizeRows = false;
             this.gridData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridData.Location = new System.Drawing.Point(47, 98);
+            this.gridData.Location = new System.Drawing.Point(87, 49);
             this.gridData.MultiSelect = false;
             this.gridData.Name = "gridData";
             this.gridData.ReadOnly = true;
@@ -117,7 +124,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.numMaxInterval);
             this.groupBox1.Controls.Add(this.numMinInterval);
-            this.groupBox1.Location = new System.Drawing.Point(698, 98);
+            this.groupBox1.Location = new System.Drawing.Point(817, 149);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(455, 221);
             this.groupBox1.TabIndex = 4;
@@ -275,7 +282,7 @@
             this.fichierToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1187, 24);
+            this.menu.Size = new System.Drawing.Size(1297, 24);
             this.menu.TabIndex = 5;
             this.menu.Text = "menuStrip1";
             // 
@@ -311,13 +318,64 @@
             this.toolStripExportConfiguration.Text = "Export";
             this.toolStripExportConfiguration.Click += new System.EventHandler(this.toolStripExportConfiguration_Click);
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Location = new System.Drawing.Point(0, 27);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(787, 497);
+            this.tabControl.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.gridData);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(779, 471);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Data";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(779, 471);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Graphic";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(779, 471);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Add user";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(779, 471);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Users list";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // MeteoStationController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1187, 610);
+            this.ClientSize = new System.Drawing.Size(1297, 610);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.gridData);
             this.Controls.Add(this.btnToggleReading);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbPorts);
@@ -336,6 +394,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMinInterval)).EndInit();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +425,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripConfiguration;
         private System.Windows.Forms.ToolStripMenuItem toolStripImportConfiguration;
         private System.Windows.Forms.ToolStripMenuItem toolStripExportConfiguration;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 

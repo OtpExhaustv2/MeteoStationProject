@@ -153,6 +153,7 @@ namespace MeteoSationProject
                     int[] splittedLine = Array.ConvertAll(line.Split(';'), data => int.Parse(data));
                     _serialPortHandler.UpdateIntervalsMesure(splittedLine[0], splittedLine[1], splittedLine[2]);
                     _serialPortHandler.UpdateAlarmeMesure(splittedLine[0], splittedLine[3], splittedLine[4]);
+                    UpdateNumerics((int)cbIds.SelectedItem);
                 }
             }
         }
@@ -164,8 +165,12 @@ namespace MeteoSationProject
 
         private void cbIds_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedId = (int)cbIds.SelectedItem;
-            Mesure mesure = (Mesure)_serialPortHandler.GetBaseById(selectedId);
+            UpdateNumerics((int)cbIds.SelectedItem);
+        }
+
+        private void UpdateNumerics(int id)
+        {
+            Mesure mesure = (Mesure)_serialPortHandler.GetBaseById(id);
             if (mesure._isConfigured)
             {
                 numMinInterval.Value = mesure.Intervals[0];
