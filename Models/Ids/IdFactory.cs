@@ -35,11 +35,11 @@ namespace MeteoSationProject.Models.Ids
             return IdFactory._instance;
         }
 
-        public Base GetBase(int id)
+        public Base GetBase(int id, Trame trame)
         {
-            if (id == 0) return new Base();
-            if (id <= 10 && id >= 1) return new Mesure();
-            if (id == 50) return new Alarme();
+            if (id == 0) return new Base(trame);
+            if (id <= 10 && id >= 1) return new Mesure(trame);
+            if (id == 50) return new Alarme(trame);
 
             return null;
         }
