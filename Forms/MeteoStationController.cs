@@ -1,7 +1,11 @@
-﻿using MeteoSationProject.Interfaces.Observer;
+﻿using MeteoSationProject.Forms;
+using MeteoSationProject.Interfaces.Observer;
+using MeteoSationProject.Models;
 using MeteoSationProject.Models.Ids;
 using MeteoSationProject.Services;
+using MeteoSationProject.Services.DBAccess_Provider;
 using MeteoSationProject.Services.SerialHandler;
+using MeteoSationProject.Services.UserProvider;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +19,7 @@ namespace MeteoSationProject
 
         private SerialPortHandler _serialPortHandler;
         private Configuration _configuration;
+        private User user;
         private DataTable _dt = new DataTable();
 
         public MeteoStationController()
@@ -24,6 +29,11 @@ namespace MeteoSationProject
             _serialPortHandler = new SerialPortHandler();
             _serialPortHandler.RegisterObserver(this);
             gridData.DataSource = _dt;
+
+            user = UserProvider.User;
+
+            Tools.Config();
+            DataReader.Read(gridUsers, "UserTable");
         }
 
         private void btnToggleReading_Click(object sender, EventArgs e)
@@ -48,6 +58,34 @@ namespace MeteoSationProject
             _dt.Columns.Add("Data");
             _dt.Columns.Add("Alarme");
             _dt.Columns.Add("CheckSum");
+            gridData.Sort(gridData.Columns[0], ListSortDirection.Ascending);
+
+            if (user.Access._userCreation)
+            {
+                txtPassword.PasswordChar = '*';
+                foreach (var entry in Adapter.GetAllAccess())
+                {
+                    cbAccess.Items.Add(entry.Key + " - " + entry.Value);
+                }
+                cbAccess.SelectedIndex = 0;
+            }
+            else
+            {
+                tpAddUser.Enabled = false;
+            }
+
+            if (!user.Access._allowConfigAlarm)
+            {
+                numMinAlarme.Enabled = false;
+                numMaxAlarme.Enabled = false;
+                btnUpdateAlarme.Enabled = false;
+            }
+
+            if (!user.Access._allowDestroyId)
+            {
+                btnDelete.Enabled = false;
+            }
+
         }
 
         private void cbPorts_SelectedIndexChanged(object sender, EventArgs e)
@@ -76,7 +114,6 @@ namespace MeteoSationProject
                 }
             }
 
-
             if (!isAlreadyInGrid)
             {
                 _dt.Rows.Add(b._id, b.IsConfigured(), b.GetType(), b.GetConvertedData(), "", b.GetCalculatedCheckSum());
@@ -88,7 +125,6 @@ namespace MeteoSationProject
                 gridData.DataSource = null;
                 gridData.DataSource = _dt;
                 // Update the sorting of the grid by id
-                gridData.Sort(gridData.Columns[0], ListSortDirection.Ascending);
                 InsertIntoCombobox(b);
             }));
         }
@@ -99,6 +135,7 @@ namespace MeteoSationProject
             {
                 cbIds.Enabled = true;
                 btnUpdateIntervals.Enabled = true;
+                btnUpdateAlarme.Enabled = user.Access._allowConfigAlarm ? true : false;
             }
             // Checks if the id is already in the combobox
             if (!cbIds.Items.Contains(b._id) && (b._id > 0 && b._id <= 10))
@@ -122,13 +159,16 @@ namespace MeteoSationProject
 
         private void btnUpdateAlarme_Click(object sender, EventArgs e)
         {
-            int selectedId = (int)cbIds.SelectedItem;
-            int minValue = (int)numMinAlarme.Value;
-            int maxValue = (int)numMaxAlarme.Value;
-
-            if (MinMaxEqualsOrZero(minValue, maxValue))
+            if (user.Access._allowConfigAlarm)
             {
-                _serialPortHandler.UpdateAlarmeMesure(selectedId, minValue, maxValue);
+                int selectedId = (int)cbIds.SelectedItem;
+                int minValue = (int)numMinAlarme.Value;
+                int maxValue = (int)numMaxAlarme.Value;
+
+                if (MinMaxEqualsOrZero(minValue, maxValue))
+                {
+                    _serialPortHandler.UpdateAlarmeMesure(selectedId, minValue, maxValue);
+                }
             }
         }
 
@@ -182,5 +222,60 @@ namespace MeteoSationProject
                 numMaxInterval.Value = 0;
             }
         }
+
+        private void MeteoStationController_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LoginController obj = (LoginController)Application.OpenForms["LoginController"];
+            obj.Close();
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            if (txtUsername.Text.Length == 0 || txtPassword.Text.Length == 0)
+            {
+                MessageBox.Show("Please, enter a valid username and password!");
+                return;
+            }
+            string selectedItem = cbAccess.SelectedItem.ToString();
+            int id = int.Parse(selectedItem.Split(new[] { " - " }, StringSplitOptions.None)[0]);
+            if (Adapter.Insert(txtUsername.Text, txtPassword.Text, id))
+            {
+                txtPassword.Text = "";
+                txtUsername.Text = "";
+                cbAccess.SelectedIndex = 0;
+            }
+        }
+
+        private void btnLoadUsers_Click(object sender, EventArgs e)
+        {
+            DataReader.Read(gridUsers, "UserTable");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete this user?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                int index = gridUsers.CurrentCell.RowIndex;
+                int id = int.Parse(gridUsers.Rows[index].Cells[0].Value.ToString());
+                if (Adapter.Delete(id))
+                {
+                    MessageBox.Show("User deleted");
+                    gridUsers.Rows.RemoveAt(index);
+                }
+                else
+                {
+                    MessageBox.Show("An error occured..");
+                }
+            }
+
+        }
+
+        private void accessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProfileDetails profileDetails = new ProfileDetails();
+            profileDetails.ShowDialog();
+        }
+
     }
 }

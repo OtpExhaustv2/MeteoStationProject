@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cbPorts = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnToggleReading = new System.Windows.Forms.Button();
@@ -50,11 +51,24 @@
             this.toolStripConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripImportConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripExportConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tpData = new System.Windows.Forms.TabPage();
+            this.tpGraphic = new System.Windows.Forms.TabPage();
+            this.tpAddUser = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.cbAccess = new System.Windows.Forms.ComboBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.tpUsersList = new System.Windows.Forms.TabPage();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnLoadUsers = new System.Windows.Forms.Button();
+            this.gridUsers = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxAlarme)).BeginInit();
@@ -63,7 +77,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMinInterval)).BeginInit();
             this.menu.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tpData.SuspendLayout();
+            this.tpAddUser.SuspendLayout();
+            this.tpUsersList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // cbPorts
@@ -133,6 +150,7 @@
             // 
             // btnUpdateAlarme
             // 
+            this.btnUpdateAlarme.Enabled = false;
             this.btnUpdateAlarme.Location = new System.Drawing.Point(302, 179);
             this.btnUpdateAlarme.Name = "btnUpdateAlarme";
             this.btnUpdateAlarme.Size = new System.Drawing.Size(121, 23);
@@ -143,6 +161,7 @@
             // 
             // btnUpdateIntervals
             // 
+            this.btnUpdateIntervals.Enabled = false;
             this.btnUpdateIntervals.Location = new System.Drawing.Point(97, 179);
             this.btnUpdateIntervals.Name = "btnUpdateIntervals";
             this.btnUpdateIntervals.Size = new System.Drawing.Size(121, 23);
@@ -279,7 +298,8 @@
             // 
             this.menu.BackColor = System.Drawing.Color.White;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fichierToolStripMenuItem});
+            this.fichierToolStripMenuItem,
+            this.profileToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1297, 24);
@@ -301,73 +321,197 @@
             this.toolStripExportConfiguration});
             this.toolStripConfiguration.Enabled = false;
             this.toolStripConfiguration.Name = "toolStripConfiguration";
-            this.toolStripConfiguration.Size = new System.Drawing.Size(180, 22);
+            this.toolStripConfiguration.Size = new System.Drawing.Size(148, 22);
             this.toolStripConfiguration.Text = "Configuration";
             // 
             // toolStripImportConfiguration
             // 
             this.toolStripImportConfiguration.Name = "toolStripImportConfiguration";
-            this.toolStripImportConfiguration.Size = new System.Drawing.Size(180, 22);
+            this.toolStripImportConfiguration.Size = new System.Drawing.Size(110, 22);
             this.toolStripImportConfiguration.Text = "Import";
             this.toolStripImportConfiguration.Click += new System.EventHandler(this.toolStripImportConfiguration_Click);
             // 
             // toolStripExportConfiguration
             // 
             this.toolStripExportConfiguration.Name = "toolStripExportConfiguration";
-            this.toolStripExportConfiguration.Size = new System.Drawing.Size(180, 22);
+            this.toolStripExportConfiguration.Size = new System.Drawing.Size(110, 22);
             this.toolStripExportConfiguration.Text = "Export";
             this.toolStripExportConfiguration.Click += new System.EventHandler(this.toolStripExportConfiguration_Click);
             // 
+            // profileToolStripMenuItem
+            // 
+            this.profileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.accessToolStripMenuItem});
+            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.profileToolStripMenuItem.Text = "Profile";
+            // 
+            // accessToolStripMenuItem
+            // 
+            this.accessToolStripMenuItem.Name = "accessToolStripMenuItem";
+            this.accessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accessToolStripMenuItem.Text = "Details";
+            this.accessToolStripMenuItem.Click += new System.EventHandler(this.accessToolStripMenuItem_Click);
+            // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Controls.Add(this.tpData);
+            this.tabControl.Controls.Add(this.tpGraphic);
+            this.tabControl.Controls.Add(this.tpAddUser);
+            this.tabControl.Controls.Add(this.tpUsersList);
             this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(787, 497);
             this.tabControl.TabIndex = 6;
             // 
-            // tabPage1
+            // tpData
             // 
-            this.tabPage1.Controls.Add(this.gridData);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(779, 471);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Data";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpData.Controls.Add(this.gridData);
+            this.tpData.Location = new System.Drawing.Point(4, 22);
+            this.tpData.Name = "tpData";
+            this.tpData.Padding = new System.Windows.Forms.Padding(3);
+            this.tpData.Size = new System.Drawing.Size(779, 471);
+            this.tpData.TabIndex = 0;
+            this.tpData.Text = "Data";
+            this.tpData.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tpGraphic
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(779, 471);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Graphic";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpGraphic.Location = new System.Drawing.Point(4, 22);
+            this.tpGraphic.Name = "tpGraphic";
+            this.tpGraphic.Padding = new System.Windows.Forms.Padding(3);
+            this.tpGraphic.Size = new System.Drawing.Size(779, 471);
+            this.tpGraphic.TabIndex = 1;
+            this.tpGraphic.Text = "Graphic";
+            this.tpGraphic.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tpAddUser
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(779, 471);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Add user";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tpAddUser.Controls.Add(this.label9);
+            this.tpAddUser.Controls.Add(this.label8);
+            this.tpAddUser.Controls.Add(this.label7);
+            this.tpAddUser.Controls.Add(this.btnAddUser);
+            this.tpAddUser.Controls.Add(this.cbAccess);
+            this.tpAddUser.Controls.Add(this.txtPassword);
+            this.tpAddUser.Controls.Add(this.txtUsername);
+            this.tpAddUser.Location = new System.Drawing.Point(4, 22);
+            this.tpAddUser.Name = "tpAddUser";
+            this.tpAddUser.Size = new System.Drawing.Size(779, 471);
+            this.tpAddUser.TabIndex = 2;
+            this.tpAddUser.Text = "Add user";
+            this.tpAddUser.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // label9
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(779, 471);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Users list";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(247, 159);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Access:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(240, 121);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Password:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(239, 80);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Username:";
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(299, 192);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(148, 23);
+            this.btnAddUser.TabIndex = 3;
+            this.btnAddUser.Text = "Add user";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // cbAccess
+            // 
+            this.cbAccess.FormattingEnabled = true;
+            this.cbAccess.Location = new System.Drawing.Point(299, 155);
+            this.cbAccess.Name = "cbAccess";
+            this.cbAccess.Size = new System.Drawing.Size(148, 21);
+            this.cbAccess.TabIndex = 2;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(299, 118);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(148, 20);
+            this.txtPassword.TabIndex = 1;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(299, 77);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(148, 20);
+            this.txtUsername.TabIndex = 0;
+            // 
+            // tpUsersList
+            // 
+            this.tpUsersList.Controls.Add(this.btnDelete);
+            this.tpUsersList.Controls.Add(this.btnLoadUsers);
+            this.tpUsersList.Controls.Add(this.gridUsers);
+            this.tpUsersList.Location = new System.Drawing.Point(4, 22);
+            this.tpUsersList.Name = "tpUsersList";
+            this.tpUsersList.Size = new System.Drawing.Size(779, 471);
+            this.tpUsersList.TabIndex = 3;
+            this.tpUsersList.Text = "Users list";
+            this.tpUsersList.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(379, 347);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnLoadUsers
+            // 
+            this.btnLoadUsers.Location = new System.Drawing.Point(197, 347);
+            this.btnLoadUsers.Name = "btnLoadUsers";
+            this.btnLoadUsers.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadUsers.TabIndex = 2;
+            this.btnLoadUsers.Text = "Load";
+            this.btnLoadUsers.UseVisualStyleBackColor = true;
+            this.btnLoadUsers.Click += new System.EventHandler(this.btnLoadUsers_Click);
+            // 
+            // gridUsers
+            // 
+            this.gridUsers.AllowUserToAddRows = false;
+            this.gridUsers.AllowUserToDeleteRows = false;
+            this.gridUsers.AllowUserToResizeColumns = false;
+            this.gridUsers.AllowUserToResizeRows = false;
+            this.gridUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridUsers.Location = new System.Drawing.Point(117, 31);
+            this.gridUsers.MultiSelect = false;
+            this.gridUsers.Name = "gridUsers";
+            this.gridUsers.ReadOnly = true;
+            this.gridUsers.RowHeadersVisible = false;
+            this.gridUsers.Size = new System.Drawing.Size(403, 290);
+            this.gridUsers.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // MeteoStationController
             // 
@@ -384,6 +528,7 @@
             this.Name = "MeteoStationController";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meteo Station";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MeteoStationController_FormClosing);
             this.Load += new System.EventHandler(this.MeteoStationController_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -395,7 +540,11 @@
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tpData.ResumeLayout(false);
+            this.tpAddUser.ResumeLayout(false);
+            this.tpAddUser.PerformLayout();
+            this.tpUsersList.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,10 +575,23 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripImportConfiguration;
         private System.Windows.Forms.ToolStripMenuItem toolStripExportConfiguration;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tpData;
+        private System.Windows.Forms.TabPage tpGraphic;
+        private System.Windows.Forms.TabPage tpAddUser;
+        private System.Windows.Forms.TabPage tpUsersList;
+        private System.Windows.Forms.DataGridView gridUsers;
+        private System.Windows.Forms.Button btnLoadUsers;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.ComboBox cbAccess;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accessToolStripMenuItem;
     }
 }
 
