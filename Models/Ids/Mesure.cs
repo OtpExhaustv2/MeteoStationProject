@@ -51,6 +51,17 @@ namespace MeteoSationProject.Models.Ids
             return null;
         }
 
+        public override string GetState()
+        {
+            if (_intervalAlarme[0] != 0 && _intervalAlarme[1] != 0 && _isConfigured)
+            {
+                if (_convertedData < _intervalAlarme[0]) return "Down";
+                if (_convertedData > _intervalAlarme[1]) return "Up";
+            }
+
+            return "";
+        }
+
         public void UpdateIntervals(int min, int max)
         {
             _isConfigured = true;

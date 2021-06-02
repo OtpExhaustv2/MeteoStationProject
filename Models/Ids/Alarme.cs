@@ -18,7 +18,7 @@ namespace MeteoSationProject.Models.Ids
             return (byte)(_id + _dataNumber + _type + somme);
         }
 
-        public String GetTypeAlarme()
+        public override string GetState()
         {
             if (_dataNotConverted[1] == 0) return "No alarm";
             if (_dataNotConverted[1] == 85) return "Overcurrent";
@@ -26,7 +26,6 @@ namespace MeteoSationProject.Models.Ids
             if (_dataNotConverted[1] == 255) return "Overtemperature";
             return null;
         }
-
         public override string GetType()
         {
             return "Alarme";

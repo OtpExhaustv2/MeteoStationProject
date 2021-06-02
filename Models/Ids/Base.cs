@@ -22,7 +22,7 @@ namespace MeteoSationProject.Models.Ids
             UpdateFromTrame(trame);
         }
 
-        public Base UpdateFromTrame (Trame trame)
+        public Base UpdateFromTrame(Trame trame)
         {
             _id = trame._id;
             _dataNumber = trame._dataNumber;
@@ -33,7 +33,7 @@ namespace MeteoSationProject.Models.Ids
             return this;
         }
 
-        public String IsConfigured()
+        public string IsConfigured()
         {
             return _isConfigured ? "Done" : "Not Done";
         }
@@ -41,6 +41,11 @@ namespace MeteoSationProject.Models.Ids
         public virtual double GetConvertedData()
         {
             return 0;
+        }
+
+        public virtual string GetState()
+        {
+            return "";
         }
 
         public virtual byte GetCalculatedCheckSum()

@@ -69,6 +69,7 @@
             this.btnLoadUsers = new System.Windows.Forms.Button();
             this.gridUsers = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chartControl1 = new MeteoSationProject.Forms.Controls.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridData)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxAlarme)).BeginInit();
@@ -78,6 +79,7 @@
             this.menu.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tpData.SuspendLayout();
+            this.tpGraphic.SuspendLayout();
             this.tpAddUser.SuspendLayout();
             this.tpUsersList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridUsers)).BeginInit();
@@ -349,7 +351,7 @@
             // accessToolStripMenuItem
             // 
             this.accessToolStripMenuItem.Name = "accessToolStripMenuItem";
-            this.accessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accessToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.accessToolStripMenuItem.Text = "Details";
             this.accessToolStripMenuItem.Click += new System.EventHandler(this.accessToolStripMenuItem_Click);
             // 
@@ -378,6 +380,7 @@
             // 
             // tpGraphic
             // 
+            this.tpGraphic.Controls.Add(this.chartControl1);
             this.tpGraphic.Location = new System.Drawing.Point(4, 22);
             this.tpGraphic.Name = "tpGraphic";
             this.tpGraphic.Padding = new System.Windows.Forms.Padding(3);
@@ -513,6 +516,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // chartControl1
+            // 
+            this.chartControl1.Location = new System.Drawing.Point(8, 19);
+            this.chartControl1.Name = "chartControl1";
+            this.chartControl1.Size = new System.Drawing.Size(627, 418);
+            this.chartControl1.TabIndex = 0;
+            // 
             // MeteoStationController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,6 +551,7 @@
             this.menu.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tpData.ResumeLayout(false);
+            this.tpGraphic.ResumeLayout(false);
             this.tpAddUser.ResumeLayout(false);
             this.tpAddUser.PerformLayout();
             this.tpUsersList.ResumeLayout(false);
@@ -592,6 +603,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accessToolStripMenuItem;
+        private Forms.Controls.ChartControl chartControl1;
     }
 }
 

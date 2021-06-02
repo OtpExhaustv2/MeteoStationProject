@@ -1,4 +1,5 @@
 ﻿using MeteoSationProject.Forms;
+using MeteoSationProject.Forms.Controls;
 using MeteoSationProject.Interfaces.Observer;
 using MeteoSationProject.Models;
 using MeteoSationProject.Models.Ids;
@@ -17,7 +18,7 @@ namespace MeteoSationProject
     public partial class MeteoStationController : Form, Observer<Base>
     {
 
-        private SerialPortHandler _serialPortHandler;
+        internal static SerialPortHandler _serialPortHandler;
         private Configuration _configuration;
         private User user;
         private DataTable _dt = new DataTable();
@@ -56,7 +57,7 @@ namespace MeteoSationProject
             _dt.Columns.Add("Is configured");
             _dt.Columns.Add("Type");
             _dt.Columns.Add("Data");
-            _dt.Columns.Add("Alarme");
+            _dt.Columns.Add("State");
             _dt.Columns.Add("CheckSum");
             gridData.Sort(gridData.Columns[0], ListSortDirection.Ascending);
 
@@ -110,6 +111,7 @@ namespace MeteoSationProject
                     row["Is configured"] = b.IsConfigured();
                     row["Data"] = b.GetConvertedData();
                     row["CheckSum"] = b.GetCalculatedCheckSum();
+                    row["State"] = b.GetState();
                     isAlreadyInGrid = true;
                 }
             }
@@ -124,7 +126,6 @@ namespace MeteoSationProject
             {
                 gridData.DataSource = null;
                 gridData.DataSource = _dt;
-                // Update the sorting of the grid by id
                 InsertIntoCombobox(b);
             }));
         }
@@ -155,6 +156,7 @@ namespace MeteoSationProject
             {
                 _serialPortHandler.UpdateIntervalsMesure(selectedId, minValue, maxValue);
             }
+            UpdateUpdateBtn();
         }
 
         private void btnUpdateAlarme_Click(object sender, EventArgs e)
@@ -194,6 +196,7 @@ namespace MeteoSationProject
                     _serialPortHandler.UpdateIntervalsMesure(splittedLine[0], splittedLine[1], splittedLine[2]);
                     _serialPortHandler.UpdateAlarmeMesure(splittedLine[0], splittedLine[3], splittedLine[4]);
                     UpdateNumerics((int)cbIds.SelectedItem);
+                    UpdateUpdateBtn();
                 }
             }
         }
@@ -206,6 +209,13 @@ namespace MeteoSationProject
         private void cbIds_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateNumerics((int)cbIds.SelectedItem);
+            UpdateUpdateBtn();
+        }
+
+        private void UpdateUpdateBtn()
+        {
+            Base b = _serialPortHandler.GetBaseById((int)cbIds.SelectedItem);
+            btnUpdateAlarme.Enabled = b._isConfigured;
         }
 
         private void UpdateNumerics(int id)
