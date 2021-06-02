@@ -46,26 +46,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\LoginController.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginController.Designer.cs">
+      <DependentUpon>LoginController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MeteoStationController.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MeteoStationController.Designer.cs">
       <DependentUpon>MeteoStationController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProfileDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProfileDetails.Designer.cs">
+      <DependentUpon>ProfileDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals\Path.cs" />
     <Compile Include="Interfaces\Observer\Observable.cs" />
     <Compile Include="Interfaces\Observer\Observer.cs" />
+    <Compile Include="Models\Access.cs" />
     <Compile Include="Models\Ids\Alarme.cs" />
     <Compile Include="Models\Ids\Base.cs" />
     <Compile Include="Models\Ids\IdFactory.cs" />
     <Compile Include="Models\Ids\Mesure.cs" />
     <Compile Include="Models\Trame.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Configuration.cs" />
+    <Compile Include="Services\DBAccess Provider\Adapter.cs" />
+    <Compile Include="Services\DBAccess Provider\DataReader.cs" />
+    <Compile Include="Services\DBAccess Provider\Tools.cs" />
     <Compile Include="Services\SerialPort\SerialPortHandler.cs" />
+    <Compile Include="Services\UserProvider\UserProvider.cs" />
+    <EmbeddedResource Include="Forms\LoginController.resx">
+      <DependentUpon>LoginController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MeteoStationController.resx">
       <DependentUpon>MeteoStationController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProfileDetails.resx">
+      <DependentUpon>ProfileDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
