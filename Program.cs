@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MeteoSationProject.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace MeteoSationProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MeteoStationController());
+            Application.Run(new LoginController());
         }
     }
 }
