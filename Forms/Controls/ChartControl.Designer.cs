@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.cbChartIds = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -58,10 +58,10 @@
             // 
             // chart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(19, 27);
             this.chart.Name = "chart";
             this.chart.Size = new System.Drawing.Size(404, 300);

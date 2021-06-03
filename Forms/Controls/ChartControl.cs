@@ -58,19 +58,24 @@ namespace MeteoSationProject.Forms.Controls
                     if (data.Count > 10)
                     {
                         data.RemoveAt(0);
-                    }
-                    if (_launched)
-                    {
-                        cbChartIds.Invoke(new MethodInvoker(delegate
+                        chart.Invoke(new MethodInvoker(delegate
                         {
-                            int index = int.Parse(cbChartIds.SelectedItem.ToString());
-                            if (_dataById.ContainsKey(index))
-                            {
-                                List<int> d = _dataById[index];
-                                UpdateChart(d[d.Count - 1]);
-                            }
+                            _series.Points.RemoveAt(0);
+                            chart.ResetAutoValues();
                         }));
                     }
+                }
+                if (_launched)
+                {
+                    cbChartIds.Invoke(new MethodInvoker(delegate
+                    {
+                        int index = int.Parse(cbChartIds.SelectedItem.ToString());
+                        if (_dataById.ContainsKey(index))
+                        {
+                            List<int> d = _dataById[index];
+                            UpdateChart(d[d.Count - 1]);
+                        }
+                    }));
                 }
             }
 
