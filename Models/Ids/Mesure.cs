@@ -55,11 +55,11 @@ namespace MeteoSationProject.Models.Ids
         {
             if (_intervalAlarme[0] != 0 && _intervalAlarme[1] != 0 && _isConfigured)
             {
-                if (_convertedData < _intervalAlarme[0]) return "Down";
-                if (_convertedData > _intervalAlarme[1]) return "Up";
+                if (_convertedData < _intervalAlarme[0]) return "DOWN";
+                if (_convertedData > _intervalAlarme[1]) return "UP";
             }
 
-            return "";
+            return "OK";
         }
 
         public void UpdateIntervals(int min, int max)

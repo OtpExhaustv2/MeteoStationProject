@@ -21,6 +21,7 @@ namespace MeteoSationProject.Forms.Controls
         private Dictionary<int, List<int>> _dataById = new Dictionary<int, List<int>>();
         private Series _series = new Series("Data");
         private bool _launched = false;
+        private readonly int MAX_DATA_TO_SHOW = 10;
 
         public ChartControl()
         {
@@ -55,14 +56,9 @@ namespace MeteoSationProject.Forms.Controls
                 {
                     List<int> data = _dataById[b._id];
                     data.Add((int)b.GetConvertedData());
-                    if (data.Count > 10)
+                    if (data.Count > MAX_DATA_TO_SHOW)
                     {
                         data.RemoveAt(0);
-                        chart.Invoke(new MethodInvoker(delegate
-                        {
-                            _series.Points.RemoveAt(0);
-                            chart.ResetAutoValues();
-                        }));
                     }
                 }
                 if (_launched)
@@ -74,6 +70,15 @@ namespace MeteoSationProject.Forms.Controls
                         {
                             List<int> d = _dataById[index];
                             UpdateChart(d[d.Count - 1]);
+                        }
+                    }));
+
+                    chart.Invoke(new MethodInvoker(delegate
+                    {
+                        if (_series.Points.Count > MAX_DATA_TO_SHOW)
+                        {
+                            _series.Points.RemoveAt(0);
+                            chart.ResetAutoValues();
                         }
                     }));
                 }

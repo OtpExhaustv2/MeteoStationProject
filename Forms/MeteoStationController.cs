@@ -87,6 +87,8 @@ namespace MeteoSationProject
                 btnDelete.Enabled = false;
             }
 
+            gridData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            gridUsers.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void cbPorts_SelectedIndexChanged(object sender, EventArgs e)
@@ -278,7 +280,6 @@ namespace MeteoSationProject
                     MessageBox.Show("An error occured..");
                 }
             }
-
         }
 
         private void accessToolStripMenuItem_Click(object sender, EventArgs e)
