@@ -46,6 +46,7 @@ namespace MeteoSationProject
 
         private void MeteoStationController_Load(object sender, EventArgs e)
         {
+            // Fill the ports combobox
             foreach (String port in SerialPort.GetPortNames())
             {
                 cbPorts.Items.Add(port);
@@ -59,7 +60,10 @@ namespace MeteoSationProject
             _dt.Columns.Add("Data");
             _dt.Columns.Add("State");
             _dt.Columns.Add("CheckSum");
+
+            // Sort the data by id
             gridData.Sort(gridData.Columns[0], ListSortDirection.Ascending);
+
 
             if (user.Access._userCreation)
             {
@@ -87,6 +91,7 @@ namespace MeteoSationProject
                 btnDelete.Enabled = false;
             }
 
+            // Center the data
             gridData.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             gridUsers.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
@@ -120,7 +125,7 @@ namespace MeteoSationProject
 
             if (!isAlreadyInGrid)
             {
-                _dt.Rows.Add(b._id, b.IsConfigured(), b.GetType(), b.GetConvertedData(), "", b.GetCalculatedCheckSum());
+                _dt.Rows.Add(b._id, b.IsConfigured(), b.GetType(), b.GetConvertedData(), b.GetState(), b.GetCalculatedCheckSum());
             }
 
             // Avoid thread error => only the thread that creates GUI elements can update them
@@ -203,6 +208,7 @@ namespace MeteoSationProject
             }
         }
 
+        // Export the configuration for every mesure id
         private void toolStripExportConfiguration_Click(object sender, EventArgs e)
         {
             _configuration.ExportConfiguration(_serialPortHandler.GetAllMesures());

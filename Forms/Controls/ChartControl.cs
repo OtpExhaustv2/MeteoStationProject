@@ -39,6 +39,7 @@ namespace MeteoSationProject.Forms.Controls
         {
             if (b._isConfigured)
             {
+                // Insert the id within the combobox if it doens't contain it yet
                 if (!cbChartIds.Items.Contains(b._id))
                 {
                     cbChartIds.Invoke(new MethodInvoker(delegate
@@ -46,6 +47,7 @@ namespace MeteoSationProject.Forms.Controls
                         cbChartIds.Items.Add(b._id);
                     }));
                 }
+                // Init the dictionnary with the key = Base.Id & value = new List<int>() if the key doens't exist yet
                 if (!_dataById.ContainsKey(b._id))
                 {
                     List<int> data = new List<int>();
